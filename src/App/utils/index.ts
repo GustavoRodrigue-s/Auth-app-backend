@@ -1,3 +1,1 @@
-import Message from './createMessage';
-
-export { Message };
+export { posts } from './posts';

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { data } from '../mocks/posts';
+import { posts } from '@app/utils';
 
 class PostController {
-  async getStore(req: Request, res: Response) {
-    return res.status(200).json({ posts: data });
+  async index(req: Request, res: Response) {
+    return res.status(200).json({ posts });
   }
 }
 

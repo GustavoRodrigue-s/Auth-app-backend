@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
 
-import { Message } from '../utils';
-import { errorMessages } from '../utils/constants/messages';
+import { UnauthorizedError } from '@app/helpers';
+import { Token } from '@app/libs';
+
+import { errorMessages } from '@utils/constants/messages';
 
 interface TokenPayload {
   id: string;
@@ -10,23 +11,23 @@ interface TokenPayload {
   exp: number;
 }
 
-export function authMiddleware(
+export const authMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction
-) {
+) => {
   const { authorization } = req.headers;
 
+  const token = new Token();
+
   if (!authorization) {
-    return res
-      .status(401)
-      .json(Message.error(errorMessages.auth.authNotExists));
+    throw new UnauthorizedError(errorMessages.auth.authNotExists);
   }
 
-  const token = authorization.replace('Bearer', '').trim()!;
+  const authToken = token.read(authorization);
 
   try {
-    const data = jwt.verify(token, process.env.SECURITY_TOKEN_KEY as string);
+    const data = token.verifyAuth(authToken);
 
     const { id } = data as TokenPayload;
 
@@ -34,6 +35,6 @@ export function authMiddleware(
 
     return next();
   } catch {
-    res.status(401).json(Message.error(errorMessages.auth.invalidToken));
+    throw new UnauthorizedError(errorMessages.auth.invalidToken);
   }
-}
+};

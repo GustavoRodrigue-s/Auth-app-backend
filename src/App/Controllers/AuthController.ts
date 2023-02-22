@@ -1,50 +1,36 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 
-import { IUser } from '../types';
+import { IUser } from '@app/types';
 
-import { prisma } from '../../database/prismaClient';
+import { User } from '@app/models';
 
-import { Message } from '../utils';
-import { errorMessages } from '../utils/constants/messages';
-import { userTokenExpiration } from '../utils/constants/tokens';
+import { errorMessages } from '@utils/constants';
+import { Crypter, Token } from '@app/libs';
+import { UnauthorizedError } from '@app/helpers';
 
 class AuthController {
   async authenticate(req: Request, res: Response) {
     const { username, password }: IUser = req.body;
 
-    if (!username || !password) {
-      return res
-        .status(400)
-        .json(Message.error(errorMessages.user.emptyValues));
-    }
+    const user: Partial<IUser> | null = await User.findOne({ username });
 
-    const user: Partial<IUser> | null = await prisma.user.findFirst({
-      where: { username },
-    });
+    User.validateEmpty(username, password);
+    User.validateNotExists(user);
 
-    if (!user) {
-      return res.status(401).json(Message.error(errorMessages.user.notFound));
-    }
+    const crypter = new Crypter();
+    const token = new Token();
 
-    const isValidPassword = await bcrypt.compare(password, user.password!);
+    const isValidPassword = await crypter.compare(password, user?.password!);
 
     if (!isValidPassword) {
-      return res
-        .status(401)
-        .json(Message.error(errorMessages.user.wrongPassword));
+      throw new UnauthorizedError(errorMessages.user.wrongPassword);
     }
 
-    const token = jwt.sign(
-      { id: user.id },
-      process.env.SECURITY_TOKEN_KEY as string,
-      { expiresIn: userTokenExpiration }
-    );
+    const authToken = token.createAuth({ id: user?.id });
 
-    delete user.password;
+    delete user?.password;
 
-    return res.status(201).json({ user, token });
+    return res.status(201).json({ user, token: authToken });
   }
 }
 

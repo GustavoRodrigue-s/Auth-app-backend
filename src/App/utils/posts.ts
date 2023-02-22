@@ -1,4 +1,4 @@
-export const data = [
+export const posts = [
   {
     title: 'React.js',
     image:

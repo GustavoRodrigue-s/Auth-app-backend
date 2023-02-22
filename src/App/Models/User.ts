@@ -1,39 +1,57 @@
-import bcrypt from 'bcryptjs';
+import { prisma } from '../../database/prismaClient';
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError,
+} from '@app/helpers';
+import { Crypter } from '@app/libs';
 
-import { IUser } from '../types';
+import { IUser } from '@app/types';
 
-import { errorMessages } from '../utils/constants/messages';
+import { errorMessages } from '@utils/constants';
+import { isEmpty } from '@utils/validators';
 
-type IUserProps = Pick<IUser, 'username' | 'password'>;
+class User {
+  async findOne(where: Partial<IUser>) {
+    const user = await prisma.user.findFirst({
+      where,
+    });
 
-export class User implements IUserProps {
-  username: string;
-  password: string;
-
-  constructor(username: string, password: string) {
-    this.username = username;
-    this.password = password;
+    return user;
   }
 
-  isEmpty<T>(field: T) {
-    return field === '';
+  async create(username: string, password: string) {
+    const crypter = new Crypter();
+
+    const data = {
+      username,
+      password: crypter.hash(password),
+    };
+
+    const userCreated: Partial<IUser> = await prisma.user.create({ data });
+
+    delete userCreated.password;
+
+    return userCreated;
   }
 
-  hashPassword() {
-    this.password = bcrypt.hashSync(this.password, 8);
+  validateExists(user: Partial<IUser> | null) {
+    if (user) {
+      throw new UnauthorizedError(errorMessages.user.alreadyExists);
+    }
   }
 
-  handleStore(userExists: IUser | null) {
-    const { username, password, isEmpty } = this;
+  validateNotExists(user: Partial<IUser> | null) {
+    if (!user) {
+      throw new NotFoundError(errorMessages.user.notFound);
+    }
+  }
 
+  validateEmpty(username: string, password: string) {
     if (isEmpty(username) || isEmpty(password)) {
-      return { message: errorMessages.user.emptyValues, status: 400 };
+      throw new BadRequestError(errorMessages.user.emptyValues);
     }
-
-    if (userExists) {
-      return { message: errorMessages.user.alreadyExists, status: 401 };
-    }
-
-    return { message: 'success' };
   }
 }
+
+export default new User();

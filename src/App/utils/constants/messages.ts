@@ -1,4 +1,4 @@
-import { ErrorMessages } from '../../types/Messages';
+import { ErrorMessages } from '@app/types';
 
 export const errorMessages: ErrorMessages = {
   user: {
