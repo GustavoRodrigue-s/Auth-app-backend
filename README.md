@@ -22,10 +22,6 @@
   <img src="http://img.shields.io/static/v1?label=Status&message=Finished&color=green&style=flat" />
 </div>
 
-<h4>Observações</h4>
-
-<p>Como meu foco não era em estudar SQL, eu utilizer o ORM <em>Prisma</em> para criar minhas queries.</p>
-
 #
 
 <h3>Tecnologias e Ferramentas utilizadas 🛠️</h3>
