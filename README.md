@@ -72,7 +72,7 @@
   yarn dev
 ```
 
-Pronto! O projeto estará roadando em sua máquina. Lembrando que você precisa rodar o backend também para a aplicação funcionar corretamente.
+Pronto! O projeto estará roadando em sua máquina. Lembrando que você precisa rodar o frontend também para a aplicação funcionar corretamente.
 
 <h2>Obrigado por Ler!</h2>
 
