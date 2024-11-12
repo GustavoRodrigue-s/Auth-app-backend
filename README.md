@@ -72,6 +72,14 @@
   yarn dev
 ```
 
+<h4>Envs</h4>
+
+```
+  PORT=3000
+  SECURITY_TOKEN_KEY=niawhd90w2i89duz20-=di289j2398dhx28dx289dhj23h
+  DATABASE_URL="file:../src/database/db.sqlite"
+```
+
 Pronto! O projeto estará roadando em sua máquina. Lembrando que você precisa rodar o frontend também para a aplicação funcionar corretamente.
 
 <h2>Obrigado por Ler!</h2>
