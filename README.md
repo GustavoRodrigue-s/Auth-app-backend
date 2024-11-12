@@ -75,7 +75,7 @@
 <h4>Envs</h4>
 
 ```
-  PORT=3000
+  PORT=3001
   SECURITY_TOKEN_KEY=niawhd90w2i89duz20-=di289j2398dhx28dx289dhj23h
   DATABASE_URL="file:../src/database/db.sqlite"
 ```
