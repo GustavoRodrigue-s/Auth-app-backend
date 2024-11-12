@@ -3,15 +3,15 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id          String @id @default(uuid())
-  username    String
-  password    String
-  createdAt   DateTime @default(now())
+  id        String   @id @default(uuid())
+  username  String
+  password  String
+  createdAt DateTime @default(now())
 
   @@map("users")
 }
