@@ -6,7 +6,7 @@
   "author": "Gustavo Rodrigues Fabiano",
   "license": "ISC",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"
