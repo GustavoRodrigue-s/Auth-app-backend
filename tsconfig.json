@@ -13,13 +13,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["./src/app/*"],
-      "@utils/*": ["./src/app/utils/*"]
+      "@app/*": ["./src/App/*"],
+      "@utils/*": ["./src/App/utils/*"]
     }
-  },
-  "exclude": [
-        "test.ts",
-        "**/*.spec.ts"
-    ],
-  "include": ["src/**/*"]
+  }
 }
