@@ -2,9 +2,15 @@
   "name": "authentication-project",
   "version": "1.0.0",
   "description": "Authentication project",
-  "main": "src/server.ts",
+  "main": "server.ts",
   "author": "Gustavo Rodrigues Fabiano",
   "license": "ISC",
+  "engines": {
+    "node": "18"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "start": "node dist/server.js",
