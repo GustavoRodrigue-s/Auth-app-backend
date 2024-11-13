@@ -23,6 +23,11 @@
       "@utils/*": ["src/app/utils/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": [
+        "test.ts",
+        "**/*.spec.ts"
+    ],
+    "include": [
+        "**/*.ts"
+    ]
 }
