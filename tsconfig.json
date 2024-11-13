@@ -15,6 +15,7 @@
     "removeComments": true,
     "moduleResolution": "Node",
 
+    "rootDirs": ["src"],
     "baseUrl": ".",
 
     "paths": {
@@ -22,4 +23,6 @@
       "@utils/*": ["src/app/utils/*"]
     }
   },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
