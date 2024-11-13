@@ -2,25 +2,19 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "./build",
     "rootDir": "src",
-    "lib": ["ESNext"],
-    "allowJs": true,
+    "outDir": "./build",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": false,
     "strict": true,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "removeComments": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
+    "allowJs": true,
 
-    "rootDirs": ["src"],
     "baseUrl": ".",
-
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@utils/*": ["src/app/utils/*"]
+      "@app/*": ["./src/app/*"],
+      "@utils/*": ["./src/app/utils/*"]
     }
   },
   "exclude": [
