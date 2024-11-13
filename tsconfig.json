@@ -16,11 +16,11 @@
     "moduleResolution": "Node",
 
     "rootDirs": ["src"],
-    "baseUrl": "src/app",
+    "baseUrl": "src",
 
     "paths": {
-      "@app/*": ["./*"],
-      "@utils/*": ["utils/*"]
+      "@app/*": ["app/*"],
+      "@utils/*": ["app/utils/*"]
     }
   },
   "include": ["src/**/*"],
