@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { User } from '@app/models';
+import { User } from '@app/Models';
 import { IUser } from '@app/types';
 
 class UserController {

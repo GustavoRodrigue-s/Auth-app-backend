@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import { IUser } from '@app/types';
 
-import { User } from '@app/models';
+import { User } from '@app/Models';
 
 import { errorMessages } from '@utils/constants';
 import { Crypter, Token } from '@app/libs';

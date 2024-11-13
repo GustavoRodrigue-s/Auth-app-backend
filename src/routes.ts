@@ -4,7 +4,7 @@ import {
   UserController,
   AuthController,
   PostController,
-} from './App/controllers';
+} from './App/Controllers';
 
 import { authMiddleware } from './App/middlewares';
 
