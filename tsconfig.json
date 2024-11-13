@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "build",
+    "outDir": "./build",
     "rootDir": "src",
     "lib": ["ESNext"],
     "allowJs": true,
@@ -27,7 +27,5 @@
         "test.ts",
         "**/*.spec.ts"
     ],
-    "include": [
-        "**/*.ts"
-    ]
+  "include": ["src/**/*"]
 }
