@@ -23,6 +23,4 @@
       "@utils/*": ["src/app/utils/*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
 }
