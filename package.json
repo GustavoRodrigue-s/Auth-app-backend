@@ -1,14 +1,14 @@
 {
   "name": "authentication-project",
   "version": "1.0.0",
-  "description": "AAuthentication project",
+  "description": "Authentication project",
   "main": "src/server.ts",
   "author": "Gustavo Rodrigues Fabiano",
   "license": "ISC",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "start": "node dist/server.js",
-    "dev": "tsnd -r tsconfig-paths/register --respawn --transpile-only --files src/server.ts"
+    "dev": "tsnd --watch --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/server.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -17,8 +17,8 @@
     "@types/jsonwebtoken": "^8.5.9",
     "prisma": "^4.5.0",
     "ts-node-dev": "^2.0.0",
-    "tsc-alias": "^1.8.2",
-    "tsconfig-paths": "^4.1.2",
+    "tsconfig-paths": "^4.2.0",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.8.4"
   },
   "dependencies": {
