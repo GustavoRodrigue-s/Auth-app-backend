@@ -2,7 +2,7 @@
   "name": "authentication-project",
   "version": "1.0.0",
   "description": "Authentication project",
-  "main": "server.ts",
+  "main": "server.js",
   "author": "Gustavo Rodrigues Fabiano",
   "license": "ISC",
   "engines": {
